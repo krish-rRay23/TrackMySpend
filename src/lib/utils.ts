@@ -56,6 +56,33 @@ export function formatDate(dateString: string, formatStr = 'MMM d, yyyy'): strin
   }
 }
 
+// Calculate category breakdown from transactions
+export function calculateCategoryBreakdown(
+  transactions: Transaction[],
+  type: TransactionType = TransactionType.EXPENSE
+): Record<string, number> {
+  return transactions
+    .filter((t) => t.type === type)
+    .reduce((acc, t) => {
+      acc[t.category] = (acc[t.category] || 0) + t.amount;
+      return acc;
+    }, {} as Record<string, number>);
+}
+
+// Calculate total balance from transactions
+export function calculateNetBalance(transactions: Transaction[]): number {
+  return transactions.reduce((acc, t) => {
+    return t.type === TransactionType.INCOME ? acc + t.amount : acc - t.amount;
+  }, 0);
+}
+
+// Calculate savings percentage safely
+export function calculateSavingsRate(income: number, expenses: number): number {
+  if (income <= 0) return 0;
+  const rate = ((income - expenses) / income) * 100;
+  return Math.round(rate * 10) / 10;
+}
+
 // Generate a random color
 export function getRandomColor(): string {
   const letters = '0123456789ABCDEF';
