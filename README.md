@@ -308,7 +308,12 @@ See [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) for complete deployment guide inc
 ## 🔗 What's New
 
 ### Recent Improvements:
-1. **Authentication Flow Fixed**
+1. **Financial Intelligence & Analytics Engine**
+   - Category-wise burn rate and spending concentration metrics
+   - Automated financial insight generation engine with test coverage
+   - Safe CSV export sanitization with formula injection prevention
+
+2. **Authentication Flow Fixed**
    - Added "Sign up here" link on login page
    - Added "Sign in here" link on register page
    - Better error handling and user feedback
